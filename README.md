@@ -38,19 +38,26 @@ Here is a basic example of how to use Python_BarLoader:
 from Bar_Loader import BarLoader
 from time import sleep
 
-# Create a BarLoader object
-bar = BarLoader(total=100, task_name="Loading", enable_value=True)
+def main() :
+   """
+   Main function
+   """
+   # Create a BarLoader object
+   bar = BarLoader(total=100, task_name="Loading", enable_value=True)
+   
+   # Start the timer
+   bar.start()
+   
+   # Increment the number of processed lines
+   for i in range(100):
+       sleep(0.1)
+       bar.next()
+   
+   # End the timer
+   bar.end()
 
-# Start the timer
-bar.start()
-
-# Increment the number of processed lines
-for i in range(100):
-    sleep(0.1)
-    bar.next()
-
-# End the timer
-bar.end()
+if __name__ == "__main__":
+    main()
 ```
 
 In this example, we create a BarLoader object with a total of 100. We start the timer, then we process 100 lines (
