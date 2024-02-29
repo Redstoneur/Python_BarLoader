@@ -9,7 +9,7 @@ setup(name='BarLoader',
       author_email='',
       license='MIT License',
       packages=['Bar_Loader'],
-      keywords='Barloader',
+      keywords='BarLoader',
       classifiers=[
             'Development Status :: 3 - Alpha',
             'Intended Audience :: Developers',
