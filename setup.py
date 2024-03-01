@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='BarLoader',
-      version='1.0.0',
+      version='1.5.0',
       description='A simple package to display the loading of a process in percentage',
       long_description=open('README.md').read(),
       url='https://github.com/Redstoneur/Python_BarLoader',
