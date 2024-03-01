@@ -114,13 +114,13 @@ class BarLoader:
                     remaining_time = (total - nb) / rate
                     return (
                             separator +
-                            f"[{elapsed_time:.6f}s < {remaining_time:.6f}s remaining - ({rate:.6f}/s)]"
+                            f"[{elapsed_time:.6f}s < {remaining_time:.6f}s - ({rate:.6f}/s)]"
                             + " " * 10
                     )
                 return separator + f"({rate:.6f}/s)" + " " * 10
             if elapsed_time != 0:
                 remaining_time = (total - nb) / rate
-                return separator + f"[{elapsed_time:.6f}s < {remaining_time:.6f}s remaining]" + " " * 10
+                return separator + f"[{elapsed_time:.6f}s < {remaining_time:.6f}s]" + " " * 10
             return ""
 
         display_values = (f" {nb}/{total}" if enable_value else "") + format_time()
