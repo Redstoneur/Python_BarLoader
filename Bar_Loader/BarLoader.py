@@ -43,7 +43,7 @@ class BarLoader:
         """
         self.start_time = time()
         self.nb = 0
-        self.display_loading(
+        self._display_loading(
             nb=self.nb, total=self.total, task_name=self.task_name,
         )
 
@@ -53,7 +53,7 @@ class BarLoader:
         :return: None
         """
         self.nb += 1
-        self.display_loading(
+        self._display_loading(
             nb=self.nb, total=self.total,
             task_name=self.task_name,
             elapsed_time=time() - self.start_time,
@@ -69,7 +69,7 @@ class BarLoader:
         """
         if force:
             self.nb = self.total
-        self.display_loading(
+        self._display_loading(
             nb=self.nb, total=self.total,
             task_name=self.task_name,
             elapsed_time=time() - self.start_time,
@@ -78,7 +78,7 @@ class BarLoader:
         )
 
     @staticmethod
-    def display_loading(
+    def _display_loading(
             nb: int, total: int,
             task_name: str = "", elapsed_time: float = None,
             final: bool = False, full_time: bool = True,
@@ -144,6 +144,61 @@ class BarLoader:
         return None
 
 
+class IterativeBarLoader(BarLoader):
+    """
+    Class that contains the function to display the loading of a process in percentage for iterative process
+    """
+
+    def __init__(
+            self, total: int,
+            task_name: str = "",
+            full_time: bool = True,
+            debug_mode: bool = False) -> None:
+        """
+        Constructor
+        :param total: the total number of lines
+        :param task_name: the name of the task (Default : "")
+        :param full_time: if we should display all time information (Default : True)
+        :param debug_mode: the debug mode (Default : False)
+        """
+        super().__init__(
+            total=total, task_name=task_name,
+            full_time=full_time, enable_value=True,
+            debug_mode=debug_mode
+        )
+
+
+class UniqueProcessBarLoader(BarLoader):
+    """
+    Class that contains the function to display the loading of a process in percentage for unique process
+    """
+
+    def __init__(
+            self, total: int,
+            task_name: str = "",
+            full_time: bool = True,
+            debug_mode: bool = False) -> None:
+        """
+        Constructor
+        :param total: the total number of lines
+        :param task_name: the name of the task (Default : "")
+        :param full_time: if we should display all time information (Default : True)
+        :param debug_mode: the debug mode (Default : False)
+        """
+        super().__init__(
+            total=total, task_name=task_name,
+            full_time=full_time, enable_value=False,
+            debug_mode=debug_mode
+        )
+
+    def end(self) -> None:
+        """
+        Function that ends the timer
+        :return:
+        """
+        super().end(force=True)
+
+
 if __name__ == "__main__":
     # Demonstration of the Bar_Loader class with the display_loading function
 
@@ -152,26 +207,40 @@ if __name__ == "__main__":
 
     # Create a Bar_Loader object
     bar = BarLoader(total=100, task_name="Loading", enable_value=True)
-
     # Start the timer
     bar.start()
-
     # Increment the number of lines processed
     for i in range(100):
         sleep(0.1)
         bar.next()
-
     # End the timer
     bar.end()
 
     # Create a Bar_Loader object
     bar = BarLoader(total=100, task_name="Loading2")
-
     # Start the timer
     bar.start()
-
     # Sumulate a long process
     sleep(3)
-
     # End the timer
     bar.end(force=True)
+
+    # Create a Bar_Loader object
+    bar = IterativeBarLoader(total=100, task_name="Loading3")
+    # Start the timer
+    bar.start()
+    # Increment the number of lines processed
+    for i in range(100):
+        sleep(0.1)
+        bar.next()
+    # End the timer
+    bar.end()
+
+    # Create a Bar_Loader object
+    bar = UniqueProcessBarLoader(total=100, task_name="Loading4")
+    # Start the timer
+    bar.start()
+    # Sumulate a long process
+    sleep(3)
+    # End the timer
+    bar.end()
