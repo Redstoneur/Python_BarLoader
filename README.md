@@ -1,5 +1,12 @@
 # Python_BarLoader
 
+![License](https://img.shields.io/github/license/Redstoneur/Python_BarLoader)
+![Top Language](https://img.shields.io/github/languages/top/Redstoneur/Python_BarLoader)
+![Build Status](https://img.shields.io/github/actions/workflow/status/Redstoneur/Python_BarLoader/build-and-publish.yml)
+![Latest Release](https://img.shields.io/github/v/release/Redstoneur/Python_BarLoader)
+![Release Date](https://img.shields.io/github/release-date/Redstoneur/Python_BarLoader)
+![Last Commit](https://img.shields.io/github/last-commit/Redstoneur/Python_BarLoader)
+
 Python_BarLoader is a simple package that allows you to display the loading of a process in percentage. It is designed
 to be easy to use and integrate into your Python projects.
 
